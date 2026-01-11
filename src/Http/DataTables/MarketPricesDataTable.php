@@ -52,6 +52,7 @@ class MarketPricesDataTable extends DataTable
     {
         return $this->builder()
             ->postAjax()
+            ->parameters(['searching'=>false])
             ->columns($this->getColumns())
             ->postAjax([
                 'data' => 'function(d) { d.location = $("#dt-location-selector").val(); }',
@@ -68,7 +69,6 @@ class MarketPricesDataTable extends DataTable
             ->where('is_buy_order',null)
             ->join('market_prices','market_prices.type_id','character_orders.type_id')
             ->where('state','active');
-        //::;
     }
 
     /**
